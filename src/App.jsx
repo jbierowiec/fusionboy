@@ -1,39 +1,66 @@
-// src/App.jsx
-import Container from 'react-bootstrap/Container'
-import NavbarTop from './components/NavbarTop'
-import Hero from './components/Hero'
-import Skills from './components/Skills'
-import Services from './components/Services'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import Container from "react-bootstrap/Container";
+import NavbarTop from "./components/NavbarTop";
+import Hero from "./components/Hero";
+import Skills from "./components/Skills";
+import Playground from "./components/Playground";
+import Services from "./components/Services";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+
+const full = { minHeight: "100vh" };
+const center = "d-flex align-items-center";
 
 export default function App() {
   return (
     <>
       <NavbarTop />
       <main>
-        <Hero />
+        {/* HERO */}
+        <section className={`bg-body-tertiary ${center}`} style={full}>
+          <Container>
+            <Hero />
+          </Container>
+        </section>
 
-        <section id="skills" className="py-5">
+        {/* SKILLS */}
+        <section id="skills" className={`${center}`} style={full}>
           <Container>
             <Skills />
           </Container>
         </section>
 
-        <section id="services" className="py-5 bg-body-tertiary">
+        {/* PLAYGROUND */}
+        <section
+          id="playground"
+          className={`bg-body-tertiary ${center}`}
+          style={full}
+        >
+          <Container>
+            <Playground />
+          </Container>
+        </section>
+
+        {/* SERVICES */}
+        <section id="services" className={`${center}`} style={full}>
           <Container>
             <Services />
           </Container>
         </section>
 
-        <section id="projects" className="py-5">
+        {/* PROJECTS */}
+        <section
+          id="projects"
+          className={`bg-body-tertiary ${center}`}
+          style={full}
+        >
           <Container>
             <Projects />
           </Container>
         </section>
 
-        <section id="contact" className="py-5 bg-body-tertiary">
+        {/* CONTACT */}
+        <section id="contact" className={`${center}`} style={full}>
           <Container>
             <Contact />
           </Container>
@@ -41,5 +68,5 @@ export default function App() {
       </main>
       <Footer />
     </>
-  )
+  );
 }

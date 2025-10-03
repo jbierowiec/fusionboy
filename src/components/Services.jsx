@@ -1,40 +1,91 @@
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+// src/components/Services.jsx
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const services = [
-  { title: '3D Modeling', desc: 'Clean parametric CAD for parts, enclosures, brackets, and assemblies with proper tolerances.', cta: 'Start a Model' },
-  { title: '3D Design', desc: 'Concept to manufacturable design: requirements, sketches, materials, fasteners, BOM.', cta: 'Discuss Design' },
-  { title: '3D Printing', desc: 'FDM prints (PLA/PETG/ABS) with tuned profiles. Post-processing available.', cta: 'Request a Print' },
-  { title: 'CNC Parts', desc: 'CAM toolpaths and machining for metals/plastics. Fit checks and iteration included.', cta: 'CNC Quote' },
-]
+  {
+    title: "3D Modeling",
+    lead: "Clean, parametric CAD for ready-to-make parts.",
+    bullets: [
+      "Parts/enclosures/assemblies",
+      "Fits & tolerances",
+      "STEP / STL / drawings",
+    ],
+    cta: "Start a Model",
+  },
+  {
+    title: "3D Design",
+    lead: "From idea to manufacturable design package.",
+    bullets: [
+      "Requirements & materials",
+      "DFM for print/CNC",
+      "BOM & revisions",
+    ],
+    cta: "Discuss Design",
+  },
+  {
+    title: "3D Printing",
+    lead: "Functional FDM prints with tuned profiles.",
+    bullets: ["PLA / PETG / ABS", "Strength-oriented setup", "Post-processing"],
+    cta: "Request a Print",
+  },
+  {
+    title: "CNC Parts",
+    lead: "CAM toolpaths and machined components.",
+    bullets: [
+      "Stock/fixturing/probing",
+      "Tools, feeds & speeds",
+      "Fit checks & iteration",
+    ],
+    cta: "CNC Quote",
+  },
+];
 
 export default function Services() {
   return (
     <>
       <h2 className="mb-2">Services &amp; Pricing</h2>
       <p className="text-secondary mb-4">
-        Every project is unique—materials, tolerances, and complexity drive cost. Click below to get a free quote.
+        Every project is unique—materials, tolerances, and complexity drive
+        cost. Get a free quote.
       </p>
 
-      <Row className="g-4">
-        {services.map(s => (
-          <Col md={6} lg={3} key={s.title}>
-            <Card className="h-100 shadow-sm">
-              <Card.Body className="d-flex flex-column">
-                <Card.Title>{s.title}</Card.Title>
-                <Card.Text className="text-secondary flex-grow-1">{s.desc}</Card.Text>
-                <Button href="#contact" variant="primary">{s.cta}</Button>
-              </Card.Body>
-            </Card>
+      {/* 2×2 on md+, 1× on mobile */}
+      <Row className="row-cols-1 row-cols-md-2 g-4">
+        {services.map((s) => (
+          <Col key={s.title}>
+            <div className="bg-white border rounded-4 shadow-sm p-4 h-100 d-flex flex-column">
+              <div className="d-flex align-items-start mb-2">
+                <div
+                  className="rounded-circle bg-primary-subtle d-inline-flex align-items-center justify-content-center me-3"
+                  style={{ width: 52, height: 52 }}
+                >
+                  <span className="fw-bold text-primary">3D</span>
+                </div>
+                <div>
+                  <h4 className="mb-1">{s.title}</h4>
+                  <div className="text-secondary">{s.lead}</div>
+                </div>
+              </div>
+
+              <ul className="mt-3 mb-4 ps-4">
+                {s.bullets.map((b, i) => (
+                  <li key={i} className="mb-1">
+                    {b}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto">
+                <Button href="#contact" variant="primary">
+                  {s.cta}
+                </Button>
+              </div>
+            </div>
           </Col>
         ))}
       </Row>
-
-      <div className="mt-4 p-3 border rounded bg-white">
-        <strong>Pricing note:</strong> Quotes consider modeling time, revisions, print hours/material, and CNC toolpaths/setup.
-      </div>
     </>
-  )
+  );
 }
